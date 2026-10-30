@@ -1,0 +1,78 @@
+/* Animated Naogaon landscapes (hero + footer). Everything here is decorative. */
+.ls, .ls * { pointer-events: none; user-select: none; }
+.ls svg { display: block; }
+.ls-layer { position: absolute; }
+
+/* ----- hero layout ----- */
+.ls-hero { position: absolute; inset: 0; z-index: -1; overflow: hidden; border-radius: inherit; }
+.ls-sky { inset: 0; translate: 0 calc(var(--ls-y, 0) * 0.05px); }
+.ls-sky-gradient { width: 100%; height: 100%; }
+.ls-sun-wrap { top: 5%; right: 5%; width: clamp(110px, 12vw, 190px); translate: 0 calc(var(--ls-y, 0) * 0.12px); }
+.ls-sun { width: 100%; height: auto; overflow: visible; }
+.ls-sky-art { top: 0; left: 0; right: 0; height: min(18.75vw, 248px); translate: 0 calc(var(--ls-y, 0) * 0.09px); }
+.ls-sky-art svg { width: 100%; height: 100%; overflow: hidden; }
+.ls-ground { left: 0; right: 0; bottom: 0; height: min(26.25vw, 346px); translate: 0 calc(var(--ls-y, 0) * 0.04px); overflow: hidden; }
+.ls-ground svg { width: 100%; height: 100%; }
+
+/* ----- footer layout ----- */
+.ls-footer { position: absolute; inset: 0; z-index: 0; overflow: hidden; border-radius: inherit; }
+.ls-foot-sky { position: absolute; inset: 0; }
+.ls-foot-sky .ls-sky-gradient { width: 100%; height: 100%; }
+.ls-foot-sky-art { position: absolute; top: 0; left: 0; width: 100%; height: clamp(150px, 13.75vw, 220px); }
+.ls-foot-scene { position: absolute; left: 0; bottom: 0; width: 100%; height: clamp(150px, 13.75vw, 220px); }
+
+/* ----- keyframes ----- */
+@keyframes ls-spin { to { transform: rotate(360deg); } }
+@keyframes ls-cloud { from { transform: translateX(-340px); } to { transform: translateX(1940px); } }
+@keyframes ls-fly { from { transform: translate(-120px, 0); } 50% { transform: translate(800px, -26px); } to { transform: translate(1720px, 0); } }
+@keyframes ls-flap { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(.3); } }
+@keyframes ls-hover { from { transform: translate(-30px, 0); } to { transform: translate(30px, -9px); } }
+@keyframes ls-sway { from { transform: rotate(calc(var(--amp, 1.6deg) * -1)); } to { transform: rotate(var(--amp, 1.6deg)); } }
+@keyframes ls-frond { from { transform: rotate(-3deg); } to { transform: rotate(3.5deg); } }
+@keyframes ls-shimmer { 0%, 100% { opacity: .12; transform: translateX(-6px); } 50% { opacity: .8; transform: translateX(6px); } }
+@keyframes ls-drift { from { transform: translateX(-28px); } to { transform: translateX(28px); } }
+@keyframes ls-bob { 0%, 100% { transform: translateY(0) rotate(-1.4deg); } 50% { transform: translateY(2px) rotate(1.4deg); } }
+@keyframes ls-deer { 0% { transform: translateX(0) scaleX(1); } 44% { transform: translateX(70px) scaleX(1); } 50% { transform: translateX(70px) scaleX(-1); } 94% { transform: translateX(0) scaleX(-1); } 100% { transform: translateX(0) scaleX(1); } }
+@keyframes ls-leg { 0%, 100% { transform: rotate(18deg); } 50% { transform: rotate(-18deg); } }
+@keyframes ls-rickshaw { 0% { transform: translateX(-160px); } 52% { transform: translateX(1760px); } 100% { transform: translateX(1760px); } }
+@keyframes ls-flag { 0%, 100% { transform: skewY(-7deg); } 50% { transform: skewY(7deg); } }
+@keyframes ls-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@keyframes ls-flow { to { stroke-dashoffset: -80; } }
+@keyframes ls-pan { from { transform: translateX(0); } to { transform: translateX(calc(100vw - 100% - 24px)); } }
+
+/* ----- animated parts ----- */
+.ls-sun-rays { animation: ls-spin 90s linear infinite; }
+.ls-wheel { animation: ls-spin .66s linear infinite; }
+.ls-cloud { animation: ls-cloud var(--dur, 100s) linear var(--delay, 0s) infinite; }
+.ls-bird-flight { animation: ls-fly var(--dur, 40s) linear var(--delay, 0s) infinite; }
+.ls-bird { transform-box: fill-box; transform-origin: 50% 100%; animation: ls-flap .9s ease-in-out var(--flap-delay, 0s) infinite; }
+.ls-bird-hover { animation: ls-hover var(--dur, 9s) ease-in-out var(--delay, 0s) infinite alternate; }
+.ls-sway { transform-box: fill-box; transform-origin: 50% 100%; animation: ls-sway var(--dur, 5s) ease-in-out var(--delay, 0s) infinite alternate; }
+.ls-frond-sway { animation: ls-frond 3.6s ease-in-out var(--delay, 0s) infinite alternate; }
+.ls-shimmer { animation: ls-shimmer var(--dur, 4s) ease-in-out var(--delay, 0s) infinite; }
+.ls-boat-drift { animation: ls-drift var(--dur, 16s) ease-in-out var(--delay, 0s) infinite alternate; }
+.ls-boat-bob { transform-box: fill-box; transform-origin: 50% 100%; animation: ls-bob 3.6s ease-in-out infinite; }
+.ls-deer-walk { transform-box: fill-box; transform-origin: center; animation: ls-deer var(--dur, 34s) linear infinite; }
+.ls-leg { transform-box: fill-box; transform-origin: 50% 0; animation: ls-leg 1.3s ease-in-out infinite; }
+.ls-leg.b { animation-delay: -.65s; }
+.ls-rickshaw { animation: ls-rickshaw var(--dur, 44s) linear var(--delay, 0s) infinite; }
+.ls-flag { transform-box: fill-box; transform-origin: 0 50%; animation: ls-flag 1.8s ease-in-out infinite; }
+.ls-float { animation: ls-float 4s ease-in-out infinite; }
+.ls-flow { stroke-dasharray: 14 26; animation: ls-flow 3s linear infinite; }
+
+/* ----- small screens: keep the landmarks at a readable size and slowly pan across them ----- */
+@media (max-width: 700px) {
+  .ls-ground { height: 289px; }
+  .ls-ground svg { width: 1100px; height: 289px; animation: ls-pan 80s ease-in-out infinite alternate; }
+  .ls-sun-wrap { width: 96px; }
+  .ls-sky-art { height: 150px; }
+  .ls-sky-art svg { width: 800px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ls *, .ls svg { animation: none !important; }
+  .ls-cloud { transform: translateX(var(--x, 0px)); }
+  .ls-bird-flight { display: none; }
+  .ls-rickshaw { transform: translateX(700px); }
+  .ls-sky, .ls-sun-wrap, .ls-sky-art, .ls-ground { translate: none; }
+}

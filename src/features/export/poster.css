@@ -1,0 +1,232 @@
+.poster-preview-shell {
+  overflow: hidden;
+  border: 1px solid #dce8df;
+  border-radius: 10px;
+  background: #edf3e9;
+}
+
+.travel-poster {
+  position: relative;
+  display: flex;
+  width: 1200px;
+  height: 1600px;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 60px 72px 48px;
+  color: var(--poster-ink);
+  background: var(--poster-background);
+  font-family: var(--poster-font);
+  isolation: isolate;
+  box-sizing: border-box;
+  border-radius: 64px;
+}
+
+/* Header matching Unseen Bangladesh */
+.poster-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding-bottom: 12px;
+}
+
+.poster-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.poster-eyebrow {
+  color: var(--poster-muted);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.poster-title {
+  margin: 0;
+  color: var(--poster-ink);
+  font-size: 60px;
+  font-weight: 950;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.poster-ratio {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.poster-ratio-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: currentColor;
+  color: var(--poster-background);
+  font-size: 26px;
+  font-weight: 900;
+  margin-right: 2px;
+}
+
+.poster-ratio-visited {
+  font-size: 66px;
+  font-weight: 950;
+}
+
+.poster-ratio-slash {
+  font-size: 48px;
+  opacity: 0.6;
+}
+
+.poster-ratio-total {
+  font-size: 48px;
+  opacity: 0.85;
+}
+
+/* Center Map Container */
+.poster-map-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  width: 100%;
+  height: 980px;
+  min-height: 800px;
+  padding: 10px 0 16px;
+}
+
+.poster-map-svg-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.poster-map-svg {
+  display: block;
+  width: 980px;
+  height: 980px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Bottom Section */
+.poster-footer-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 13px;
+  margin-top: auto;
+  padding-top: 10px;
+}
+
+.poster-progress-track {
+  width: 100%;
+  height: 11px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.poster-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+.poster-progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 19px;
+}
+
+.poster-progress-pct {
+  color: var(--poster-ink);
+  font-weight: 850;
+}
+
+.poster-progress-counts {
+  color: var(--poster-muted);
+  font-weight: 650;
+}
+
+.poster-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 6px;
+}
+
+.poster-callout-sub {
+  color: var(--poster-muted);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.poster-callout-main {
+  color: var(--poster-ink);
+  font-size: 25px;
+  font-weight: 850;
+}
+
+.poster-brand-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--poster-muted);
+  font-size: 16px;
+}
+
+.poster-brand-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  object-fit: contain;
+}
+
+.poster-brand-name {
+  display: block;
+  height: 48px;
+  text-align: left;
+}
+
+.poster-brand-name strong {
+  display: block;
+  height: 24px;
+  color: #07623f; /* the logo's green, solid so the PNG export renders it exactly */
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 24px;
+}
+
+.poster-header { gap: 24px; }
+.poster-header-text { flex: 1; min-width: 0; }
+.poster-avatar {
+  width: 92px;
+  height: 92px;
+  flex: 0 0 auto;
+  border: 5px solid var(--poster-accent);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* On-page preview: the full-size poster is scaled down to the width of its frame. */
+.poster-preview-viewport { position: relative; width: 100%; overflow: hidden; box-shadow: 0 12px 34px rgba(15, 60, 45, .16); }
+.travel-poster-preview { position: absolute; top: 0; left: 0; transform-origin: top left; }
+.poster-preview-viewport { border-radius: 28px; }
+.poster-map-container .geographic-map-interactive { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
