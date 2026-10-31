@@ -23,7 +23,7 @@ function HeroMap({ visitedIds, onPick }: { visitedIds: Set<string>; onPick: (id:
   return (
     <div className="hero-map" aria-label={t('hero.mapAria')}>
       <svg viewBox={`0 0 ${SIZE} ${SIZE}`} role="group">
-        <path d={outline} className="hero-map-shape" />
+        <path d={outline} className="hero-map-shape" pathLength={1} />
         {inner.map((d, index) => <path key={index} d={d} className="hero-map-upazila" />)}
         <path d={outline} className="hero-map-edge" />
         {VERIFIED_ATTRACTIONS.map((attraction, index) => {
