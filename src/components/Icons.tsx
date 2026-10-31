@@ -36,9 +36,6 @@ export const IconArrow = (p: IconProps) => (
 export const IconUpload = (p: IconProps) => (
   <svg viewBox="0 0 24 24" {...base} {...p}><path d="M12 16V5m0 0-4 4m4-4 4 4M5 19h14" /></svg>
 )
-export const IconHeart = (p: IconProps) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...p}><path d="M12 20.500S3.500 15 3.500 8.800A4.600 4.600 0 0 1 12 6.700a4.600 4.600 0 0 1 8.500 2.100C20.500 15 12 20.500 12 20.500Z" /></svg>
-)
 export const IconFacebook = (p: IconProps) => (
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...p}><path d="M13.500 21v-8h2.700l.4-3.200h-3.100V7.900c0-.9.300-1.500 1.600-1.500h1.700V3.500c-.3 0-1.300-.1-2.400-.1-2.400 0-4 1.500-4 4.100v2.300H7.700V13h2.700v8h3.100Z" /></svg>
 )
