@@ -1,7 +1,8 @@
 import { SITE } from '../config/site'
 import { useLang } from '../i18n/LanguageContext'
+import { boundarySource } from '../data/naogaon/sources'
 import { FooterLandscape } from './landscape/FooterLandscape'
-import { IconFacebook, IconHeart, LogoMark } from './Icons'
+import { IconFacebook, LogoMark } from './Icons'
 import { NAV_ITEMS, scrollToSection } from './SiteHeader'
 
 export function SiteFooter() {
@@ -17,7 +18,7 @@ export function SiteFooter() {
             <span className="brand-text">{SITE.name.split(' ').map((word) => <strong key={word}>{word}</strong>)}</span>
           </a>
           <p>{t('footer.tagline')}{lang === 'bn' ? '। ' : '. '}{t('footer.about')}</p>
-          {SITE.facebookUrl ? (
+          {/^https:\/\//.test(SITE.facebookUrl) ? (
             <a className="footer-fb" href={SITE.facebookUrl} target="_blank" rel="noreferrer"><IconFacebook width={18} height={18} /> {t('footer.fb')}</a>
           ) : (
             <span className="footer-fb is-soon"><IconFacebook width={18} height={18} /> {t('footer.fbSoon')}</span>
@@ -32,13 +33,14 @@ export function SiteFooter() {
         <div className="footer-links">
           <strong>{t('footer.sources')}</strong>
           <a href="https://www.openstreetmap.org/way/235843608" target="_blank" rel="noreferrer">{t('footer.mapData')}</a>
+          <a href={boundarySource.url} target="_blank" rel="noreferrer">{t('footer.boundary')}</a>
           <span>{t('footer.data')}</span>
         </div>
       </div>
       <div className="footer-bar">
         <div className="container footer-bar-inner">
           <span>© {num(year)} {SITE.name}. {t('footer.rights')}</span>
-          <span className="made-by">{t('footer.madeWith')} <IconHeart width={14} height={14} className="heart" /> {t('footer.madeBy')} <strong>{SITE.developer.name}</strong></span>
+          <span className="made-by">{t('footer.madeBy')} <a href={SITE.developer.url} target="_blank" rel="noopener noreferrer"><strong>{t('footer.developer')}</strong></a></span>
         </div>
       </div>
     </footer>

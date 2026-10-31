@@ -90,6 +90,11 @@ export function MapStudio({
     const file = event.target.files?.[0]
     event.target.value = ''
     if (!file) return
+    // Only real raster photos, and not absurdly large ones (the browser decodes the file in memory).
+    if (!/^image\/(jpeg|png|webp|gif|avif|heic|heif)$/i.test(file.type) || file.size > 20 * 1024 * 1024) {
+      setPhotoNote(t('studio.photoFail'))
+      return
+    }
     try {
       onSettings({ photoUrl: await squarePhoto(file), includePhoto: true })
       setPhotoNote('')

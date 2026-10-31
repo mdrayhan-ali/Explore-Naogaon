@@ -23,9 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Environment variables and secrets
+# Local secrets (none are needed today, but never commit them)
 .env
 .env.*
-!.env.example
-*.pem
-*.key

@@ -1,7 +1,6 @@
 import type { Attraction } from '../../types/geography'
 import type { FeatureCollection, MultiPolygon, Polygon } from 'geojson'
 import attractionGeometryData from './attraction-geometries.geojson?raw'
-import somapuraImage from '../../assets/somapura-mahavihara-hero.jpg'
 
 const attractionGeometryCollection = JSON.parse(attractionGeometryData) as FeatureCollection<
   Polygon | MultiPolygon,
@@ -23,7 +22,7 @@ export const attractions: Attraction[] = [
     actualGeometry: somapuraGeometry ?? null,
     descriptionBn:
       'পাহাড়পুরের সোমপুর মহাবিহার নওগাঁ জেলার একটি UNESCO বিশ্ব ঐতিহ্যবাহী স্থান। দর্শনার্থীদের সময়সূচি ও প্রবেশমূল্য এখানে যাচাই করা হয়নি।',
-    imageUrl: somapuraImage,
+    imageUrl: '',
     imageAttribution: 'Md. Ahsanul Haque Nayem · CC BY-SA 4.0',
     imageSourceUrl:
       'https://commons.wikimedia.org/wiki/File:Aerial_view_of_Somapura_Mahavihara.jpg',

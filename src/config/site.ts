@@ -7,9 +7,10 @@ export const SITE = {
   nameBn: 'এক্সপ্লোর নওগাঁ',
   tagline: 'নওগাঁকে জানুন · ঘুরে দেখুন · মানচিত্রে রাখুন',
   description:
-    'নওগাঁ জেলার ঐতিহ্য, প্রকৃতি ও ইতিহাসের ৩০টি দর্শনীয় স্থান ঘুরে দেখুন এবং নিজের ভ্রমণের অগ্রগতি মানচিত্রে রাখুন।',
+    'নওগাঁ জেলার ঐতিহ্য, প্রকৃতি ও ইতিহাসের ২৯টি দর্শনীয় স্থান ঘুরে দেখুন এবং নিজের ভ্রমণের অগ্রগতি মানচিত্রে রাখুন।',
   developer: {
     name: 'Md Rayhan Ali',
+    url: 'https://www.facebook.com/NotJustRayhan',
   },
   /**
    * Put the Explore Naogaon Facebook page address here once the page exists

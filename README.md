@@ -96,7 +96,7 @@ The Bengali web font is requested from Google Fonts, which receives normal netwo
 
 ## Place write-ups
 
-Long-form history and location text for 28 places lives in `src/data/naogaon/place-details.json` (extracted from the project's Word document) and is loaded lazily by `src/components/PlaceDetails.tsx` when a place is selected. Kureghar Mango Resort and Paikbanda Sal Forest have no write-up yet.
+Long-form history and location text for 28 places is kept in `docs/place-details.json` (extracted from the project's Word document). It is not shown on the site right now. Kureghar Mango Resort and Paikbanda Sal Forest have no write-up yet.
 
 ## Known data issue
 
@@ -117,5 +117,16 @@ The bundled Somapura footprint (OpenStreetMap way 235843608) covers about 70 km2
 - "Place names" writes the name of every place you have marked, beside a red dot, without overlapping
   (`src/lib/labelLayout.ts`). The downloaded image is drawn by `rasterizeMapSvg` in `posterExport.ts`.
 - The visitor's photo is resized in the browser and only used inside the poster; nothing is uploaded.
-- Not shown right now but kept for later: the place write-ups (`place-details.json` and `PlaceDetails.tsx`).
+- Not shown right now but kept for later: the place write-ups (`docs/place-details.json`).
 - Deploy: `npm ci && npm run build`, then upload `dist/` (or connect the repo to Vercel; `vercel.json` is included).
+
+## Security and production notes
+
+- **Headers** (`vercel.json`): CSP (scripts only from this site; styles/fonts from this site and Google Fonts; images from this site, `data:` and `blob:`), `nosniff`, `X-Frame-Options: DENY`, strict referrer policy, HSTS, and a locked-down Permissions-Policy. Hashed files under `/assets/` are cached for a year. If you add a new third-party service (analytics, a map tile server, a font host) add its address to the CSP or the browser will block it.
+- **No secrets, no backend**: the site is static. Visited places, theme and language are only saved in the visitor's own browser (`localStorage`) and are validated when read back.
+- **Photo upload**: only common image types up to 20 MB are accepted; the photo is shrunk to a small square and never leaves the device.
+- **External links** use `rel="noreferrer"`; the Facebook link is only shown if it starts with `https://`.
+- **Crashes** show a friendly reload page (`ErrorBoundary`) instead of a blank screen.
+- **CI** (`.github/workflows/ci.yml`) runs lint, tests, the production build and `npm audit` on every push and pull request.
+- **Unused packages**: `jspdf` and `@turf/turf` are not used by the code. Remove them with `npm uninstall jspdf @turf/turf` (this also updates `package-lock.json`).
+- **Fonts**: loaded from Google Fonts. For full privacy (no visitor IP sent to Google) self-host them, e.g. with `@fontsource/inter` and `@fontsource/noto-sans-bengali`, then remove the Google entries from `index.html` and the CSP.

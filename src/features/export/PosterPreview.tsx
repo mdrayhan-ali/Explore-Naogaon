@@ -76,7 +76,7 @@ export function TravelPoster({
             <span className="poster-eyebrow">
               {showName ? t('poster.eyebrowNamed', { name }) : t('poster.eyebrow')}
             </span>
-            <h1 className="poster-title">{t('poster.title')}</h1>
+            <div className="poster-title">{t('poster.title')}</div>
           </div>
           {data.settings.includePhoto && data.settings.photoUrl && (
             <img className="poster-avatar" src={data.settings.photoUrl} alt="" />

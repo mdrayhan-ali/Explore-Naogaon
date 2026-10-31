@@ -201,7 +201,7 @@ export function GeographicMapSvg({
             fillOpacity={data.settings.mapStyle === 'outline' ? 0 : colors.opacity}
             stroke={data.settings.mapStyle === 'outline'
               ? visited ? data.theme.visited : data.theme.muted
-              : visited ? '#ffffff' : data.theme.muted}
+              :'#ffffff'}
             strokeOpacity={visited ? 0.9 : 0.95}
             strokeWidth={highlighted ? Math.max(4, width * 0.005) : Math.max(2.5, width * 0.0035)}
             strokeLinejoin="round"

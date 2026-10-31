@@ -95,11 +95,12 @@ export const STRINGS = {
   'footer.pages': { bn: 'পাতাসমূহ', en: 'Pages' },
   'footer.sources': { bn: 'তথ্যসূত্র', en: 'Sources' },
   'footer.mapData': { bn: 'মানচিত্র-ডেটা: OpenStreetMap', en: 'Map data: OpenStreetMap' },
-  'footer.photo': { bn: 'ছবি:', en: 'Photo:' },
+  'footer.boundary': { bn: 'সীমানা-ডেটা: BBS / OCHA (HDX), CC BY 3.0 IGO', en: 'Boundaries: BBS / OCHA (HDX), CC BY 3.0 IGO' },
   'footer.data': { bn: 'স্থানের তথ্য: স্থানীয় সংগ্রহ ও উন্মুক্ত উৎস', en: 'Place information: local collection and open sources' },
   'footer.rights': { bn: 'সর্বস্বত্ব সংরক্ষিত।', en: 'All rights reserved.' },
   'footer.madeWith': { bn: 'ভালোবাসায় তৈরি', en: 'Made with' },
-  'footer.madeBy': { bn: 'নির্মাতা', en: 'by' },
+  'footer.madeBy': { bn: 'নির্মাতা', en: 'By' },
+  'footer.developer': { bn: 'মোঃ রায়হান আলী', en: 'Md Rayhan Ali' },
 
   // messages
   'toast.seen': { bn: '{name} দেখা হলো · {n}/{total}', en: '{name} marked as seen · {n}/{total}' },
