@@ -123,8 +123,8 @@ export function TravelPoster({
             <strong className="poster-callout-main">{t('poster.calloutMain')}</strong>
           </div>
           <footer className="poster-brand-footer">
-            <img className="poster-brand-logo" src={`${import.meta.env.BASE_URL}logo.png`} alt="" width={48} height={48} />
-            <span className="poster-brand-name">{SITE.posterHandle.split(' ').map((word) => <strong key={word}>{word}</strong>)}</span>
+            <img className="poster-brand-logo" src={`${import.meta.env.BASE_URL}logo.png`} alt="" width={84} height={84} />
+            <img className="poster-brand-name" src={`${import.meta.env.BASE_URL}poster-wordmark.svg`} alt={SITE.posterHandle} height={84} />
           </footer>
         </section>
       </article>
