@@ -17,7 +17,7 @@ export const SITE = {
    * (for example "https://www.facebook.com/explorenaogaon"). While it is empty the
    * footer shows "coming soon" instead of a link, so nothing points to a wrong page.
    */
-  facebookUrl: '',
+  facebookUrl: 'https://www.facebook.com/explorenaogaon',
   /** The shared download counter is hidden in the hero until it reaches this number. */
   downloadCounter: { minToShow: 0 },
   /** Short handle printed at the bottom of the downloadable map poster. */
