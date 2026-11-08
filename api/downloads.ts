@@ -14,6 +14,8 @@
  * Privacy: the visitor's IP address is never stored, only a one-way hash that expires after 10 minutes.
  * The number is a friendly estimate, not an audit: anyone determined can still inflate it slowly.
  */
+// Vercel runs this file on Node.js; declared here so no extra type package is needed.
+declare const process: { env: Record<string, string | undefined> }
 
 const COUNT_KEY = 'naogaon:downloads'
 const WINDOW_SECONDS = 600
