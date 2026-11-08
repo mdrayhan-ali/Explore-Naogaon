@@ -23,6 +23,7 @@ export const STRINGS = {
   'hero.cta': { bn: 'মানচিত্রে রং দিন', en: 'Colour your map' },
   'hero.progress.none': { bn: 'এখনো শুরু হয়নি — প্রথম স্থানটি বেছে নিন', en: 'Not started yet — pick your first place' },
   'hero.progress.some': { bn: 'আপনি {n}টি স্থান দেখেছেন', en: 'You have seen {n} places' },
+  'hero.downloads': { bn: 'এখন পর্যন্ত {n}টি ম্যাপ ডাউনলোড হয়েছে', en: '{n} maps downloaded so far' },
   'hero.pinHint': { bn: 'কোনো পিনে ছুঁয়ে দেখুন', en: 'Touch a pin to see the place' },
   'hero.mapAria': { bn: 'নওগাঁ জেলার মানচিত্রে দর্শনীয় স্থানগুলো', en: 'The places of Naogaon district on the map' },
   'hero.photo': { bn: 'পাহাড়পুর · ছবি:', en: 'Paharpur · Photo:' },

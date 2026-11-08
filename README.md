@@ -75,7 +75,17 @@ The site is a static Vite application. `vercel.json` configures the Vite build a
 
 3. In Vercel, confirm the project uses `npm ci` for install, `npm run build` for build, and `dist` as the output directory. These are also recorded in `vercel.json`.
 
-There are currently **no required environment variables** and no database setup. Do not configure Supabase keys until an optional account/cloud-sync feature is implemented; any `VITE_*` value is public in a client bundle and is not a safe place for private secrets.
+### Shared download counter (optional)
+
+The hero shows "N maps downloaded so far". The number lives in a free Upstash Redis database and is read/written by the serverless function `api/downloads.ts`. Without the two variables below the site still works; the counter just stays hidden. It is also hidden until it reaches `SITE.downloadCounter.minToShow` (`src/config/site.ts`).
+
+1. Vercel -> Project -> Storage (or Marketplace) -> add **Upstash Redis** (free plan) and connect it to this project.
+2. Make sure these are set under Settings -> Environment Variables (the integration usually adds them; the `KV_REST_API_*` names also work): `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`. Optional: `COUNTER_SALT` (any random text).
+3. Redeploy. Never commit these values; do not prefix them with `VITE_`.
+
+Each visitor counts at most once per 10 minutes and only a one-way hash of their address is stored for that time. `npm run dev` has no `/api` route, so the counter is hidden locally.
+
+There is otherwise no database. Do not put private keys in any `VITE_*` value: those are public in a client bundle.
 
 ## Privacy and external services
 
@@ -123,7 +133,7 @@ The bundled Somapura footprint (OpenStreetMap way 235843608) covers about 70 km2
 ## Security and production notes
 
 - **Headers** (`vercel.json`): CSP (scripts only from this site; styles/fonts from this site and Google Fonts; images from this site, `data:` and `blob:`), `nosniff`, `X-Frame-Options: DENY`, strict referrer policy, HSTS, and a locked-down Permissions-Policy. Hashed files under `/assets/` are cached for a year. If you add a new third-party service (analytics, a map tile server, a font host) add its address to the CSP or the browser will block it.
-- **No secrets, no backend**: the site is static. Visited places, theme and language are only saved in the visitor's own browser (`localStorage`) and are validated when read back.
+- **No secrets in the repo**: the only backend is the tiny counter function (`api/downloads.ts`), whose database keys live in Vercel environment variables. It accepts POSTs only from the site's own origin, rate-limits per visitor, stores no raw IPs and returns only a number. Visited places, theme and language stay in the visitor's own browser (`localStorage`) and are validated when read back.
 - **Photo upload**: only common image types up to 20 MB are accepted; the photo is shrunk to a small square and never leaves the device.
 - **External links** use `rel="noreferrer"`; the Facebook link is only shown if it starts with `https://`.
 - **Crashes** show a friendly reload page (`ErrorBoundary`) instead of a blank screen.

@@ -6,6 +6,7 @@ import { geometryPaths, makeProjector } from './GeographicMapSvg'
 import { NaogaonHeritageLandscape } from './landscape/NaogaonHeritageLandscape'
 import { scrollToSection } from './SiteHeader'
 import { IconArrow, IconPin } from './Icons'
+import { shouldShowCount } from '../lib/downloadCounter'
 
 const SIZE = 520
 
@@ -61,13 +62,15 @@ function HeroMap({ visitedIds, onPick }: { visitedIds: Set<string>; onPick: (id:
   )
 }
 
-export function Hero({ visitedIds, visitedCount, total, onPick }: {
+export function Hero({ visitedIds, visitedCount, total, downloadCount, onPick }: {
   visitedIds: Set<string>
   visitedCount: number
   total: number
+  downloadCount: number | null
   onPick: (id: string) => void
 }) {
-  const { t, num } = useLang()
+  const { t, num, lang } = useLang()
+  const groupedCount = (count: number) => new Intl.NumberFormat(lang === 'bn' ? 'bn-BD' : 'en-US').format(count)
   return (
     <section className="hero" id="home" aria-labelledby="hero-title">
       <NaogaonHeritageLandscape />
@@ -77,6 +80,9 @@ export function Hero({ visitedIds, visitedCount, total, onPick }: {
           <h1 id="hero-title">
             {t('hero.line1')}<br /><em>{t('hero.line2')}</em>
           </h1>
+          {shouldShowCount(downloadCount, SITE.downloadCounter.minToShow) && (
+            <p className="hero-downloads"><span className="hero-downloads-dot" aria-hidden="true" />{t('hero.downloads', { n: groupedCount(downloadCount) })}</p>
+          )}
           <p className="hero-lead">{t('hero.lead')}</p>
           <div className="hero-buttons">
             <button type="button" className="btn btn-gold" onClick={() => scrollToSection('map')}>

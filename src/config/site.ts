@@ -18,6 +18,8 @@ export const SITE = {
    * footer shows "coming soon" instead of a link, so nothing points to a wrong page.
    */
   facebookUrl: '',
+  /** The shared download counter is hidden in the hero until it reaches this number. */
+  downloadCounter: { minToShow: 0 },
   /** Short handle printed at the bottom of the downloadable map poster. */
   posterHandle: 'Explore Naogaon',
 } as const

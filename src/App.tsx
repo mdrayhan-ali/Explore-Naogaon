@@ -22,6 +22,7 @@ import { MapStudio } from './components/MapStudio'
 import { SiteFooter } from './components/SiteFooter'
 import { SiteHeader, scrollToSection } from './components/SiteHeader'
 import { StatsStrip } from './components/StatsStrip'
+import { fetchDownloadCount, recordDownload } from './lib/downloadCounter'
 
 type ThemeId = MapTheme['id']
 type VisitedState = Record<string, true>
@@ -55,6 +56,7 @@ function App() {
   const [mapError, setMapError] = useState<string | null>(null)
   const [storageOff, setStorageOff] = useState(initial.storageOff)
   const [flashId, setFlashId] = useState<string | null>(null)
+  const [downloadCount, setDownloadCount] = useState<number | null>(null)
   const [posterSettings, setPosterSettings] = useState<PosterSettings>({
     ...DEFAULT_POSTER_SETTINGS,
     showPlaceNames: false,
@@ -87,6 +89,12 @@ function App() {
     return () => { cancelled = true }
     // The regions depend only on the data; the error text is looked up again when shown.
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    const controller = new AbortController()
+    void fetchDownloadCount(controller.signal).then((count) => { if (count !== null) setDownloadCount(count) })
+    return () => controller.abort()
   }, [])
 
   const visitedIds = Object.keys(visited)
@@ -158,6 +166,7 @@ function App() {
     setDownloadMessage(t('studio.downloading'))
     try {
       await downloadPoster(posterStageRef.current)
+      void recordDownload().then((count) => { if (count !== null) setDownloadCount(count) })
       setDownloadState('success')
       setDownloadMessage(t('studio.downloaded'))
     } catch (error) {
@@ -171,7 +180,7 @@ function App() {
     <div className="site-shell" data-map-theme={theme}>
       <SiteHeader visited={progress.visited} total={progress.total} />
       <main>
-        <Hero visitedIds={new Set(visitedIds)} visitedCount={progress.visited} total={progress.total} onPick={showOnMap} />
+        <Hero visitedIds={new Set(visitedIds)} visitedCount={progress.visited} total={progress.total} downloadCount={downloadCount} onPick={showOnMap} />
         <StatsStrip visitedCount={progress.visited} />
         <MapStudio
           data={posterData}
