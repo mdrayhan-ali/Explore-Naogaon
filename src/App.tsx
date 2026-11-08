@@ -47,7 +47,7 @@ function loadAppSettings() {
 }
 
 function App() {
-  const { t, num, placeName } = useLang()
+  const { t } = useLang()
   const [initial] = useState(loadAppSettings)
   const [visited, setVisited] = useState<VisitedState>(initial.visited)
   const [theme, setTheme] = useState<ThemeId>(initial.theme)
@@ -65,9 +65,7 @@ function App() {
   })
   const [downloadState, setDownloadState] = useState<'idle' | 'working' | 'success' | 'error'>('idle')
   const [downloadMessage, setDownloadMessage] = useState('')
-  const [toast, setToast] = useState<string | null>(null)
   const posterStageRef = useRef<HTMLDivElement>(null)
-  const toastTimer = useRef<number | undefined>(undefined)
   const flashTimer = useRef<number | undefined>(undefined)
   const selectedTheme = THEMES.find((item) => item.id === theme) ?? THEMES[0]
 
@@ -110,12 +108,6 @@ function App() {
     theme: selectedTheme,
   }), [regions, selectedTheme, visited, posterSettings])
 
-  function showToast(message: string) {
-    setToast(message)
-    window.clearTimeout(toastTimer.current)
-    toastTimer.current = window.setTimeout(() => setToast(null), 2800)
-  }
-
   function updateTheme(next: ThemeId) {
     setTheme(next)
     try {
@@ -143,7 +135,6 @@ function App() {
       delete next[attraction.id]
     } else {
       next[attraction.id] = true
-      showToast(t('toast.seen', { name: placeName(attraction), n: num(Object.keys(next).length), total: num(progress.total) }))
     }
     updateVisited(next)
   }
@@ -201,7 +192,7 @@ function App() {
       </main>
       <SiteFooter />
       {storageOff && <div className="storage-banner" role="alert">{t('storage.off')}</div>}
-      {toast && <div className="toast" role="status">{toast}</div>}
+
       <div className="poster-export-host" aria-hidden="true">
         <TravelPoster data={posterData} stageRef={posterStageRef} />
       </div>
