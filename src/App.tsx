@@ -192,9 +192,6 @@ function App() {
         />
       </main>
       <SiteFooter />
-      {storageOff && <div className="storage-banner" role="alert">{t('storage.off')}</div>}
-
-            <SiteFooter />
       <Analytics />
       {storageOff && <div className="storage-banner" role="alert">{t('storage.off')}</div>}
 
