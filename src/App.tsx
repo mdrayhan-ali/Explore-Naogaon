@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import './App.css'
 import {
   ADMIN_BOUNDARIES,
@@ -191,6 +192,10 @@ function App() {
         />
       </main>
       <SiteFooter />
+      {storageOff && <div className="storage-banner" role="alert">{t('storage.off')}</div>}
+
+            <SiteFooter />
+      <Analytics />
       {storageOff && <div className="storage-banner" role="alert">{t('storage.off')}</div>}
 
       <div className="poster-export-host" aria-hidden="true">
